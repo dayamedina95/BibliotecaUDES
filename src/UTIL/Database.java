@@ -1,4 +1,4 @@
-package SERVICE;
+package UTIL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,10 +14,10 @@ import java.util.logging.Logger;
 public class Database {
 
     private static Connection connection;
-    private static String database = "bibliotecaudes";
-    private static String user = "root";
-    private static String password = "";
-    private static String url = "jdbc:mysql://localhost:3306/" + database;
+    private static String database = "PXA6q36mB8";
+    private static String user = "PXA6q36mB8";
+    private static String password = "u1HWqSTW8s";
+    private static String url = "jdbc:mysql://remotemysql.com:3306/" + database;
     private static JDBCMiddler jdbc;
 
     public static boolean connect() {

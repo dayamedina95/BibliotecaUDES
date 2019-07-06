@@ -1,5 +1,5 @@
 
-package SERVICE;
+package UTIL;
 
 import java.sql.*;
 import java.util.Iterator;

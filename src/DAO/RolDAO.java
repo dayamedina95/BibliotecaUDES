@@ -1,12 +1,13 @@
-package SERVICE;
+package DAO;
 
-import SERVICE.Database;
+import UTIL.Database;
+import UTIL.Database;
 import java.util.ArrayList;
 
 public class RolDAO {
 
     public static ArrayList<String> cargarRoles() {
-        return Database.getSQL("select descripcion from rol order by idRol asc");
+        return Database.getSQL("select descripcion from rol order by id_rol asc");
     }
     
     public static boolean crearRol(String descripcion) {

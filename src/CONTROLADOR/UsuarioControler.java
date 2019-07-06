@@ -1,16 +1,13 @@
 package CONTROLADOR;
 
-import MODELO.Usuario;
-import SERVICE.RolDAO;
-import SERVICE.UsuarioDAO;
-import SERVICE.conexionBD;
+import DAO.RolDAO;
+import DAO.UsuarioDAO;
 import java.util.ArrayList;
 
-public class iniciarSesion {
+public class UsuarioControler {
     
-    public static String login (String codigo,String clave,String rol){
-        Usuario usuario = new Usuario(codigo,clave,rol);
-        return UsuarioDAO.login(usuario);
+    public boolean login (String cedula,String clave,String rol){
+        return UsuarioDAO.login(cedula, clave, rol);
     }
     
     public static ArrayList<String> listarRoles() {

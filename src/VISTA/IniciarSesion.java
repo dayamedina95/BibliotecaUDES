@@ -1,17 +1,17 @@
 package VISTA;
 
-import CONTROLADOR.iniciarSesion;
+import CONTROLADOR.UsuarioControler;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class IniciarSesion extends javax.swing.JFrame {
 
-    private iniciarSesion login;
+    private UsuarioControler login;
 
     public IniciarSesion() {
         initComponents();
         setLocationRelativeTo(this);
-        this.login = new iniciarSesion();
+        this.login = new UsuarioControler();
         this.cargarSelect();
     }
 
@@ -23,7 +23,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         }
     }
 
-    public iniciarSesion getFacade() {
+    public UsuarioControler getFacade() {
         return this.login;
     }
 
@@ -221,7 +221,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         String rolV = rol.getSelectedIndex() + "";
         if (codigo.toString().length() > 3 && clave.isEmpty() && rol.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Por Favor Complete los Campos");
-        } else if (login.login(codigoUser, clave, rolV).equalsIgnoreCase("ok")) {
+        } else if (login.login(codigoUser, clave, rolV)) {
             JPanelPrincipal p = new JPanelPrincipal(this, rolV);
             p.setVisible(true);
             this.setVisible(false);
