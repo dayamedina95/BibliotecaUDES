@@ -164,11 +164,11 @@ public class JPanelPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void btnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorActionPerformed
-        new CambiaPanel(pnlPrincipal, new JPanelServiciosAdmin(login, rolLogueado));
+        new CambiaPanel(pnlPrincipal, new JPanelServiciosBibliAdmin(login, rolLogueado));
     }//GEN-LAST:event_btnAdministradorActionPerformed
 
     private void btnBibliotecariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBibliotecariaActionPerformed
-        new CambiaPanel(pnlPrincipal, new JPanelServiciosBibliotecaria(login, rolLogueado));
+        new CambiaPanel(pnlPrincipal, new JPanelServiciosBibliAdmin(login, rolLogueado));
     }//GEN-LAST:event_btnBibliotecariaActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed

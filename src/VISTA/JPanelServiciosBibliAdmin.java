@@ -4,7 +4,7 @@ import UTIL.CambiaPanel;
 import java.awt.Component;
 import java.util.ArrayList;
 
-public class JPanelServiciosBibliotecaria extends javax.swing.JPanel {
+public class JPanelServiciosBibliAdmin extends javax.swing.JPanel {
 
     private IniciarSesion login;
     private String rolLogueado;
@@ -14,7 +14,7 @@ public class JPanelServiciosBibliotecaria extends javax.swing.JPanel {
     private Component gestionarLibro;
     private Component generarReportes;
 
-    public JPanelServiciosBibliotecaria(IniciarSesion login, String rol) {
+    public JPanelServiciosBibliAdmin(IniciarSesion login, String rol) {
         initComponents();
         this.login = login;
         this.rolLogueado = rol;
@@ -48,6 +48,39 @@ public class JPanelServiciosBibliotecaria extends javax.swing.JPanel {
         for (int i = 0; i < permisos.size(); i++) {
             String[] permiso = permisos.get(i).split("/");
             switch (permiso[0]) {
+                case "1":
+                    this.gestionarUsuarios.setName("Gestionar Usuarios");
+                    this.jTabbedPane1.add(this.gestionarUsuarios);
+                    break;
+                case "2":
+                    this.btnRegistrarUsuario.setVisible(true);
+                    break;
+                case "3":
+                    this.btnModificarUsuario.setVisible(true);
+                    break;
+                case "4":
+                    this.actualizarSistema.setName("Actualizar Sistema");
+                    this.jTabbedPane1.add(this.actualizarSistema);
+                    break;
+                case "5":
+                    this.btnActualizarSección.setVisible(true);
+                    break;
+                case "6":
+                    this.btnActualizarUsuarios.setVisible(true);
+                    break;
+                case "7":
+                    this.generarReportes.setName("Generar Reportes");
+                    this.jTabbedPane1.add(this.generarReportes);
+                    break;
+                case "8":
+                    this.btnReporteUsuarios.setVisible(true);
+                    break;
+                case "9":
+                    this.btnReporteReservas.setVisible(true);
+                    break;
+                case "10":
+                    this.btnReporteInventarios.setVisible(true);
+                    break;
                 case "11":
                     this.gestionarUsuarios.setName("Gestionar Usuarios");
                     this.jTabbedPane1.add(this.gestionarUsuarios);
@@ -207,7 +240,7 @@ public class JPanelServiciosBibliotecaria extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(btnActualizarSección, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(btnActualizarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -223,7 +256,7 @@ public class JPanelServiciosBibliotecaria extends javax.swing.JPanel {
                     .addComponent(btnActualizarSección, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlPrin2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPrin2, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -279,7 +312,7 @@ public class JPanelServiciosBibliotecaria extends javax.swing.JPanel {
                         .addComponent(registrarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(consultarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(pnlPrin3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPrin3, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -324,7 +357,7 @@ public class JPanelServiciosBibliotecaria extends javax.swing.JPanel {
                     .addComponent(solicitudes, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                     .addComponent(consultarLibros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlPrin4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPrin4, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -378,7 +411,7 @@ public class JPanelServiciosBibliotecaria extends javax.swing.JPanel {
                     .addComponent(btnReporteReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReporteInventarios, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(pnlPrin5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPrin5, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
