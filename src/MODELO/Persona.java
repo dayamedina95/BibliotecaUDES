@@ -4,36 +4,36 @@ import java.util.ArrayList;
 
 public class Persona {
 
-    private int cedula;
+    private String cedula;
     private String tipoDocumento;
     private String nombre;
     private String fechaNacimiento;
     private String sexo;
     private String direccion;
-    private String teleono;
+    private String telefono;
     private String email;
-    private ArrayList<String> privilegios;
+//    private ArrayList<String> privilegios;
 
-    public Persona(int cedula, String tipoDocumento, String nombre, String fechaNacimiento, String sexo, String direccion, String teleono, String email, ArrayList<String> privilegios) {
+    public Persona(String cedula, String tipoDocumento, String nombre, String fechaNacimiento, String sexo, String direccion, String telefono, String email) {
         this.cedula = cedula;
         this.tipoDocumento = tipoDocumento;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
         this.direccion = direccion;
-        this.teleono = teleono;
+        this.telefono = telefono;
         this.email = email;
-        this.privilegios = privilegios;
+//        this.privilegios = privilegios;
     }
-    
+
     public Persona() {
     }
-    
-    public int getCedula() {
+
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -77,12 +77,12 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    public String getTeleono() {
-        return teleono;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setTeleono(String teleono) {
-        this.teleono = teleono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getEmail() {
@@ -93,12 +93,17 @@ public class Persona {
         this.email = email;
     }
 
-    public ArrayList<String> getPrivilegios() {
-        return privilegios;
-    }
+//    public ArrayList<String> getPrivilegios() {
+//        return privilegios;
+//    }
+//
+//    public void setPrivilegios(ArrayList<String> privilegios) {
+//        this.privilegios = privilegios;
+//    }
 
-    public void setPrivilegios(ArrayList<String> privilegios) {
-        this.privilegios = privilegios;
-    }
-    
+//    @Override
+//    public String toString() {
+//        return "Persona{" + "cedula=" + cedula + ", tipoDocumento=" + tipoDocumento + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + ", privilegios=" + privilegios + '}';
+//    }
+
 }

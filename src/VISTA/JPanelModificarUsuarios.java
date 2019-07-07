@@ -1,12 +1,29 @@
 package VISTA;
 
+import CONTROLADOR.UsuarioControler;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 public class JPanelModificarUsuarios extends javax.swing.JPanel {
 
     private IniciarSesion login;
+    private final DefaultTableModel modelo;
+    private ArrayList personas;
+    private UsuarioControler control;
+    private String personaCambiarRol[];
 
     public JPanelModificarUsuarios(IniciarSesion login) {
+        String encabezado[] = {"Cedula", "Tipo Documento", "Nombre", "Telefono", "Direccion", "Sexo", "Fecha Nacimiento", "Correo"};
+        modelo = new DefaultTableModel(null, encabezado);
         initComponents();
+        this.control = new UsuarioControler();
         this.login = login;
+        cargarPersonas();
+    }
+
+    public void cargarPersonas() {
+        personas = control.cargarPersonas();
+        UTIL.manejoTablas.llenarTabla(modelo, personas);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +46,7 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
         telefono = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         femenino = new javax.swing.JCheckBox();
-        femenino1 = new javax.swing.JCheckBox();
+        masculino = new javax.swing.JCheckBox();
         btnActualizar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -37,7 +54,7 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
         jTextFiltro = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableDatosUsuarios = new javax.swing.JTable();
+        jTablaPersonas = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,7 +85,7 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
 
         femenino.setText("       FEMENINO");
 
-        femenino1.setText("       MASCULINO");
+        masculino.setText("       MASCULINO");
 
         btnActualizar.setText("ACTUALIZAR");
 
@@ -81,18 +98,13 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
 
         btnConsultar.setText("CONSULTAR");
 
-        tableDatosUsuarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jTablaPersonas.setModel(modelo);
+        jTablaPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablaPersonasMouseClicked(evt);
             }
-        ));
-        jScrollPane2.setViewportView(tableDatosUsuarios);
+        });
+        jScrollPane2.setViewportView(jTablaPersonas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -148,7 +160,7 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
                                                 .addGap(30, 30, 30)
                                                 .addComponent(jLabel5))
                                             .addComponent(femenino)
-                                            .addComponent(femenino1)))
+                                            .addComponent(masculino)))
                                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
@@ -198,7 +210,7 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addComponent(femenino)
                         .addGap(7, 7, 7)
-                        .addComponent(femenino1)
+                        .addComponent(masculino)
                         .addGap(18, 18, 18)
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)))
@@ -214,6 +226,20 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTablaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaPersonasMouseClicked
+        
+        personaCambiarRol = personas.get(jTablaPersonas.getSelectedRow()).toString().split("/");
+        documento.setText(personaCambiarRol[0]);
+        tipoDoc.setSelectedItem(personaCambiarRol[1]);
+        nombre.setText(personaCambiarRol[2]);
+        telefono.setText(personaCambiarRol[3]);
+        direccion.setText(personaCambiarRol[4]);
+        femenino.setText(personaCambiarRol[5]);
+        masculino.setText(personaCambiarRol[5]);
+//        fechaNacimiento.setDate(personaCambiarRol[7]);
+        correo.setText(personaCambiarRol[7]);
+    }//GEN-LAST:event_jTablaPersonasMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -223,7 +249,6 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
     private javax.swing.JTextField documento;
     private com.toedter.calendar.JDateChooser fechaNacimiento;
     private javax.swing.JCheckBox femenino;
-    private javax.swing.JCheckBox femenino1;
     private javax.swing.JComboBox<String> filtro;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -235,10 +260,11 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTablaPersonas;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFiltro;
+    private javax.swing.JCheckBox masculino;
     private javax.swing.JTextField nombre;
-    private javax.swing.JTable tableDatosUsuarios;
     private javax.swing.JTextField telefono;
     private javax.swing.JComboBox<String> tipoDoc;
     // End of variables declaration//GEN-END:variables

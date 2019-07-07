@@ -9,21 +9,22 @@ public class Usuario {
     private String rol;
     private ArrayList<String> privilegios;
 
+    public Usuario(String codigoPersona, String password, String rol, ArrayList<String> privilegios) {
+        this.codigoPersona = codigoPersona;
+        this.password = password;
+        this.rol = rol;
+        this.privilegios = privilegios;
+    }
+
     public Usuario() {
     }
 
-    public Usuario(String codigoDocente, String password, String rol) {
-        this.codigoPersona = codigoDocente;
-        this.password = password;
-        this.rol = rol;
-    }
-
-    public String getCodigoDocente() {
+    public String getCodigoPersona() {
         return codigoPersona;
     }
 
-    public void setCodigoDocente(String codigoDocente) {
-        this.codigoPersona = codigoDocente;
+    public void setCodigoPersona(String codigoPersona) {
+        this.codigoPersona = codigoPersona;
     }
 
     public String getPassword() {
@@ -48,6 +49,11 @@ public class Usuario {
 
     public void setPrivilegios(ArrayList<String> privilegios) {
         this.privilegios = privilegios;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "codigoPersona=" + codigoPersona + ", password=" + password + ", rol=" + rol + ", privilegios=" + privilegios + '}';
     }
 
 }
