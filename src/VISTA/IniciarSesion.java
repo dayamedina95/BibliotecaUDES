@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 public class IniciarSesion extends javax.swing.JFrame {
 
     private UsuarioControler login;
+    private static ArrayList<String> elementos;
 
     public IniciarSesion() {
         initComponents();
@@ -17,10 +18,18 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     public void cargarSelect() {
         ArrayList<String> elementos = login.listarRoles();
-        String numero = 0 + "";
-        for (int i = 0; i < elementos.size(); i++) {
-            rol.addItem(elementos.get(i).substring(0, elementos.get(i).length() - 1));
+        for (String elemento : elementos) {
+            String split[] = elemento.split("/");
+            rol.addItem(split[1]);
         }
+    }
+
+    public static ArrayList<String> getElementos() {
+        return elementos;
+    }
+
+    public void setElementos(ArrayList<String> elementos) {
+        this.elementos = elementos;
     }
 
     public UsuarioControler getFacade() {

@@ -21,33 +21,34 @@ public class UsuarioControler {
     }
 
     //Registro de un Usuario***************************************************
-    public ArrayList<String> registrarUsuarios(ArrayList<Object[]> persona) {
-        ArrayList<Persona> usuario = new ArrayList<>();
-        for (int i = 0; i < persona.size(); i++) {
-            Persona prueba = new Persona(persona.get(i)[0].toString(), persona.get(i)[1].toString(), persona.get(i)[2].toString(), persona.get(i)[3].toString(), persona.get(i)[4].toString(), persona.get(i)[5].toString(), persona.get(i)[6].toString(), persona.get(i)[7].toString());
-            usuario.add(prueba);
-            System.out.println(i);
+    public boolean registrarPersona(String cedula, String tipoDoc,
+            String nombreUser, String cel, String direc, String sexo, String fecha, String correo) {
+        Persona persona = new Persona(cedula, tipoDoc, nombreUser, cel, direc, sexo, fecha, correo);
+        if (UsuarioDAO.existeRegistro(persona.getCedula())) {
+            return false;
         }
-        return UsuarioDAO.registrarUsuario(usuario);
-    }
-
-    public boolean asignarUsuario(String cedula, String clave, int idRol) {
-        return UsuarioDAO.asignarUsuario(cedula, clave, idRol);
+        return UsuarioDAO.agregarRegistro(persona);
     }
 
     public ArrayList<String> cargarPersonas() {
         return UsuarioDAO.cargarPersonas();
     }
-    
-     public ArrayList<String> cargarUsuarios() {
+
+    public ArrayList<String> cargarUsuarios() {
         return UsuarioDAO.cargarUsuarios();
     }
+
+    public boolean registrarUsuario(String cedula, String clave, int idRol) {
+        if (UsuarioDAO.verificarUsuario(cedula)){
+            return false;
+        }
+            return UsuarioDAO.asignarUsuario(cedula, clave, idRol);
+        }
 
 //    public ArrayList<String> registrarUsuario() {
 //        ArrayList<Persona> usuarios = new ArrayList<>();
 //        return UsuarioDAO.registrarUsuario(usuarios);
 //    }
-    
 //    public static void main(String[] args) {
 //        UsuarioControler facade = new UsuarioControler();
 //        ArrayList<Object[]> usuario = {"1094785321", "CC", "elkin peñaranda", "3124568093", "calle 7 # 4-6", "masculno", "1997-11-07", "elikinP@gmail.com"};;
@@ -57,4 +58,4 @@ public class UsuarioControler {
 //            System.out.println(id.substring(0));
 //        });
 //    }
-}
+    }

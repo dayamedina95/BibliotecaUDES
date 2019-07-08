@@ -38,23 +38,25 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
     }
 
     public void cargarSelect() {
-        ArrayList<String> elementos = control.listarRoles();
+        roles = control.listarRoles();
         String numero = 0 + "";
-        for (int i = 0; i < elementos.size(); i++) {
-            comboRolAsiganar.addItem(elementos.get(i).substring(0, elementos.get(i).length() - 1));
+        for (int i = 0; i < roles.size(); i++) {
+            String rol[] = roles.get(i).toString().split("/");
+            comboRolAsiganar.addItem(rol[1]);
+
         }
+        System.out.println(roles);
     }
 
-    private void asigarRol(ActionEvent evt) {
-        System.out.println(comboRolAsiganar.getSelectedItem());
-        String rol[] = roles.get(comboRolAsiganar.getSelectedIndex()).toString().split("/");
-        if (control.asignarUsuario(personaCambiarRol[0], personaContraseña, Integer.parseInt(rol[0]))) {
-            JOptionPane.showMessageDialog(null, "Rol asignado correctamente");
-            comboRolAsiganar.addItem((String) comboRolAsiganar.getSelectedItem());
-        }
-        JOptionPane.showMessageDialog(null, "A ocurrido un error al asignar el nuevo rol");
-    }
-
+//    private void asigarRol(ActionEvent evt) {
+//        System.out.println(comboRolAsiganar.getSelectedItem());
+//        String rol[] = roles.get(comboRolAsiganar.getSelectedIndex()).toString().split("/");
+//        if (control.asignarUsuario(personaCambiarRol[0], personaContraseña, Integer.parseInt(rol[0]))) {
+//            JOptionPane.showMessageDialog(null, "Rol asignado correctamente");
+//            comboRolAsiganar.addItem((String) comboRolAsiganar.getSelectedItem());
+//        }
+//        JOptionPane.showMessageDialog(null, "A ocurrido un error al asignar el nuevo rol");
+//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -176,11 +178,6 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
         pnlPrincipal.add(comboRolAsiganar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 220, 30));
 
         jTablaPersonas.setModel(modelo);
-        jTablaPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTablaPersonasMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTablaPersonas);
 
         pnlPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 710, 140));
@@ -194,14 +191,14 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         String cedula = numeroCedula.getText();
-        String tipoDoc = tipoDocumento.getSelectedIndex() + "";
+        String tipoDoc = tipoDocumento.getSelectedItem() + "";
         String nombreUser = nombre.getText();
         String cel = telefono.getText();
         String direc = direccion.getText();
         String fecha1 = (fechaNacimiento.getCalendar().get(Calendar.YEAR)) + "-" + (fechaNacimiento.getCalendar().get(Calendar.MONTH) + 1) + "-" + (fechaNacimiento.getCalendar().get(Calendar.DAY_OF_MONTH)) + "";
         String correo = email.getText();
         String sexo = "";
-        if (femenino.isSelected() == true) {
+        if (femenino.isSelected()) {
             sexo = "femenino";
         } else {
             sexo = "masculino";
@@ -210,10 +207,8 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
                 && direc.isEmpty() && correo.isEmpty() && fechaNacimiento.getDate() == null && femenino.isSelected() == false
                 && masculino.isSelected() == false) {
             JOptionPane.showMessageDialog(null, "Por Favor Complete los Campos");
-        } else {
-//            if (control.registrarUsuarios(cedula, tipoDoc, nombreUser, cel, direc, sexo, fecha1, correo)) {
-//                JOptionPane.showMessageDialog(null, "Datos registrados con exito");
-//            } 
+        } else if (control.registrarPersona(cedula, tipoDoc, nombreUser, cel, direc, sexo, fecha1, correo)) {
+            JOptionPane.showMessageDialog(null, "Datos registrados con exito");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -222,29 +217,21 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAsignarUsuarioActionPerformed
 
     private void btnRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar1ActionPerformed
-        if (!comboRolAsiganar.getSelectedItem().toString().equalsIgnoreCase("SELECCIONAR")) {
-            this.asigarRol(evt);
-        }
+        
+        String split [] = IniciarSesion.getElementos().get(comboRolAsiganar.getSelectedIndex()).split("/");
         String cedula = txtCedula.getText();
         String clave = confirContrasena1.getText();
         String conClave = contrasena1.getText();
-        String Rol = comboRolAsiganar.getSelectedIndex() + "";
-        
+        int Rol = Integer.parseInt(split[0]);
+
         if (!contrasena1.getText().equals(confirContrasena1.getText())) {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-        }else if (cedula.isEmpty() || clave.isEmpty() || conClave.isEmpty() || tipoDocumento.getSelectedIndex() == 0) {
+        } else if (cedula.isEmpty() || clave.isEmpty() || conClave.isEmpty() || tipoDocumento.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Por Favor Complete los Campos");
-        } else {
-            if (control.asignarUsuario(cedula, clave, Integer.parseInt(Rol))) {
-                JOptionPane.showMessageDialog(null, "Datos registrados con exito");
-            }
+        } else if (control.registrarUsuario(cedula, clave, Rol)) {
+            JOptionPane.showMessageDialog(null, "Datos registrados con exito");
         }
     }//GEN-LAST:event_btnRegistrar1ActionPerformed
-
-    private void jTablaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaPersonasMouseClicked
-        personaCambiarRol = personas.get(jTablaPersonas.getSelectedRow()).toString().split("/");
-        txtCedula.setText(personaCambiarRol[0]);
-    }//GEN-LAST:event_jTablaPersonasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

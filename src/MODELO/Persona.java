@@ -7,23 +7,22 @@ public class Persona {
     private String cedula;
     private String tipoDocumento;
     private String nombre;
-    private String fechaNacimiento;
-    private String sexo;
-    private String direccion;
     private String telefono;
+    private String direccion;
+    private String sexo;
+    private String fechaNacimiento;
     private String email;
 //    private ArrayList<String> privilegios;
 
-    public Persona(String cedula, String tipoDocumento, String nombre, String fechaNacimiento, String sexo, String direccion, String telefono, String email) {
+    public Persona(String cedula, String tipoDocumento, String nombre, String telefono, String direccion, String sexo, String fechaNacimiento, String email) {
         this.cedula = cedula;
         this.tipoDocumento = tipoDocumento;
         this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
-        this.sexo = sexo;
-        this.direccion = direccion;
         this.telefono = telefono;
+        this.direccion = direccion;
+        this.sexo = sexo;
+        this.fechaNacimiento = fechaNacimiento;
         this.email = email;
-//        this.privilegios = privilegios;
     }
 
     public Persona() {
@@ -53,20 +52,12 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getDireccion() {
@@ -77,12 +68,20 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getEmail() {
@@ -93,17 +92,9 @@ public class Persona {
         this.email = email;
     }
 
-//    public ArrayList<String> getPrivilegios() {
-//        return privilegios;
-//    }
-//
-//    public void setPrivilegios(ArrayList<String> privilegios) {
-//        this.privilegios = privilegios;
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "Persona{" + "cedula=" + cedula + ", tipoDocumento=" + tipoDocumento + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + ", privilegios=" + privilegios + '}';
-//    }
+    @Override
+    public String toString() {
+        return "Persona{" + "cedula=" + cedula + ", tipoDocumento=" + tipoDocumento + ", nombre=" + nombre + ", telefono=" + telefono + ", direccion=" + direccion + ", sexo=" + sexo + ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + '}';
+    }
 
 }

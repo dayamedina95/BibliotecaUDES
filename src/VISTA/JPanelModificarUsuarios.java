@@ -2,6 +2,8 @@ package VISTA;
 
 import CONTROLADOR.UsuarioControler;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 public class JPanelModificarUsuarios extends javax.swing.JPanel {
@@ -97,6 +99,11 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
         jTextFiltro.setText("Información para filtrar");
 
         btnConsultar.setText("CONSULTAR");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         jTablaPersonas.setModel(modelo);
         jTablaPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -227,18 +234,30 @@ public class JPanelModificarUsuarios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTablaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaPersonasMouseClicked
-        
+        masculino.setSelected(false);
+        femenino.setSelected(false);
         personaCambiarRol = personas.get(jTablaPersonas.getSelectedRow()).toString().split("/");
         documento.setText(personaCambiarRol[0]);
         tipoDoc.setSelectedItem(personaCambiarRol[1]);
         nombre.setText(personaCambiarRol[2]);
         telefono.setText(personaCambiarRol[3]);
         direccion.setText(personaCambiarRol[4]);
-        femenino.setText(personaCambiarRol[5]);
-        masculino.setText(personaCambiarRol[5]);
-//        fechaNacimiento.setDate(personaCambiarRol[7]);
+        if (personaCambiarRol[5].equals("femenino")) {
+            femenino.setSelected(true);
+        } else {
+            masculino.setSelected(true);
+        }
+        String split[] = personaCambiarRol[6].split("-");
+        Date date = new Date(Integer.parseInt(split[2])-1900, Integer.parseInt(split[1]), Integer.parseInt(split[0]));
+        fechaNacimiento.setDate(date);
         correo.setText(personaCambiarRol[7]);
+        System.out.println(date);
+        System.out.println(personaCambiarRol[6]);
     }//GEN-LAST:event_jTablaPersonasMouseClicked
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
