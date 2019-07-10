@@ -20,7 +20,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         ArrayList<String> elementos = login.listarRoles();
         for (String elemento : elementos) {
             String split[] = elemento.split("/");
-            rol.addItem(split[1]);
+            rol1.addItem(split[1]);
         }
     }
 
@@ -49,7 +49,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         contraseña = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        rol = new javax.swing.JComboBox<>();
+        rol1 = new javax.swing.JComboBox<>();
         jTextField8 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         iniciarSesion = new javax.swing.JButton();
@@ -133,17 +133,17 @@ public class IniciarSesion extends javax.swing.JFrame {
         jLabel3.setVerifyInputWhenFocusTarget(false);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 60, 40));
 
-        rol.setBackground(new java.awt.Color(234, 232, 232));
-        rol.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        rol.setForeground(new java.awt.Color(51, 51, 51));
-        rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        rol.setBorder(null);
-        rol.addActionListener(new java.awt.event.ActionListener() {
+        rol1.setBackground(new java.awt.Color(234, 232, 232));
+        rol1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        rol1.setForeground(new java.awt.Color(51, 51, 51));
+        rol1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        rol1.setBorder(null);
+        rol1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rolActionPerformed(evt);
+                rol1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 240, 40));
+        jPanel1.add(rol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 240, 40));
 
         jTextField8.setBackground(new java.awt.Color(234, 232, 232));
         jTextField8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -220,15 +220,15 @@ public class IniciarSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rolActionPerformed
+    private void rol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rol1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rolActionPerformed
+    }//GEN-LAST:event_rol1ActionPerformed
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
         String codigoUser = codigo.getText();
         String clave = contraseña.getText();
-        String rolV = rol.getSelectedIndex() + "";
-        if (codigo.toString().length() > 3 && clave.isEmpty() && rol.getSelectedIndex() == 0) {
+        String rolV = rol1.getSelectedIndex() + "";
+        if (codigo.toString().length() > 3 && clave.isEmpty() && rol1.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Por Favor Complete los Campos");
         } else if (login.login(codigoUser, clave, rolV)) {
             JPanelPrincipal p = new JPanelPrincipal(this, rolV);
@@ -287,6 +287,6 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JComboBox<String> rol;
+    private javax.swing.JComboBox<String> rol1;
     // End of variables declaration//GEN-END:variables
 }

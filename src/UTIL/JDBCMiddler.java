@@ -302,14 +302,6 @@ class JDBCMiddler{
      else return false;
 	}//Fin ejecutarSQL
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	/*-METODOS DE ACCESO-*/	
 	
 	/**Metodo de acceso a la propiedad usuario*/
@@ -414,11 +406,6 @@ class JDBCMiddler{
      
      return v;
     }//Fin getHTML
-    
-    
-    
-    
-    
     
 	/**EJECUTA UNA CONSULTA Y GENERA XML*/
     protected String getXML() throws Exception{

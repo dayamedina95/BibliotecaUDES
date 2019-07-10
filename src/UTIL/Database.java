@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Database {
+public class Database  {
 
-    private static Connection connection;
+    private static Connection connection = null;
     private static String database = "PXA6q36mB8";
     private static String user = "PXA6q36mB8";
     private static String password = "u1HWqSTW8s";
@@ -33,6 +33,10 @@ public class Database {
             return false;
         }
 
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
     public static boolean isConnected() {

@@ -33,18 +33,21 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
     }
 
     public void cargarPersonas() {
-        personas = control.cargarPersonas();
+        personas = control.listarPersonas();
         UTIL.manejoTablas.llenarTabla(modelo, personas);
     }
 
     public void cargarSelect() {
         roles = control.listarRoles();
-        String numero = 0 + "";
-        for (int i = 0; i < roles.size(); i++) {
-            String rol[] = roles.get(i).toString().split("/");
-            comboRolAsiganar.addItem(rol[1]);
-
+        for (Object role : roles) {
+            String split[] = role.toString().split("/");
+            comboRolAsiganar.addItem(split[0] + "-" + split[1]);
         }
+//        for (int i = 0; i < roles.size(); i++) {
+//            String rol[] = roles.get(i).toString().split("/");
+//            comboRolAsiganar.addItem(rol[1]);
+//
+//        }
         System.out.println(roles);
     }
 
@@ -61,6 +64,7 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSexo = new javax.swing.ButtonGroup();
         numeroCedula = new javax.swing.JTextField();
         telefono = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
@@ -94,39 +98,41 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(numeroCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 230, 30));
-        add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 230, 30));
-        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 230, 30));
-        add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 230, 30));
-        add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 230, 30));
+        add(numeroCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 230, 30));
+        add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 230, 30));
+        add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 230, 30));
+        add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, 230, 30));
+        add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 230, 30));
 
         tipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Documento", "C.C", "C.E", "T.I" }));
-        add(tipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        add(tipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 120, -1));
 
+        btnSexo.add(masculino);
         masculino.setText("       MASCULINO");
-        add(masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, -1, 20));
+        add(masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, 20));
 
+        btnSexo.add(femenino);
         femenino.setText("       FEMENINO");
-        add(femenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, -1, 20));
-        add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 230, 30));
+        add(femenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, 20));
+        add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 230, 30));
 
         jLabel3.setText("TELEFONO:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, 20));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, 20));
 
         jLabel4.setText("NOMBRE COMPLETO:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
 
-        jLabel5.setText("GENERO");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, -1, 20));
+        jLabel5.setText("GENERO: ");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 20));
 
         jLabel6.setText("DIRECCIÓN:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 20));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, 20));
 
         jLabel7.setText("FECHA DE NACIMIENTO:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 20));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 20));
 
         jLabel8.setText("CORREO ELECTRONICO");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, 20));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 20, 130, 20));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,10 +140,10 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
-        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 130, 60));
+        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 130, 40));
 
-        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 51))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 726, 280));
+        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 51, 51)));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 200));
 
         btnAsignarUsuario.setText("Asignar Usuario");
         btnAsignarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -145,23 +151,23 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
                 btnAsignarUsuarioActionPerformed(evt);
             }
         });
-        add(btnAsignarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 140, 60));
+        add(btnAsignarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 140, 40));
 
         pnlPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlPrincipal.add(contrasena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 280, 30));
+        pnlPrincipal.add(contrasena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 280, 30));
 
         confirContrasena1.setToolTipText("");
-        pnlPrincipal.add(confirContrasena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 280, 30));
+        pnlPrincipal.add(confirContrasena1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 280, 30));
 
         jLabel16.setText("CONFIRMAR CONTRASEÑA:");
-        pnlPrincipal.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, 20));
-        pnlPrincipal.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 280, 30));
+        pnlPrincipal.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 150, 20));
+        pnlPrincipal.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 280, 30));
 
         jLabel15.setText("CONTRASEÑA:");
-        pnlPrincipal.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 20));
+        pnlPrincipal.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 20));
 
         jLabel14.setText("NUMERO DE CEDULA:");
-        pnlPrincipal.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 20));
+        pnlPrincipal.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 20));
 
         btnRegistrar1.setText("REGISTRAR");
         btnRegistrar1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,23 +175,28 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
                 btnRegistrar1ActionPerformed(evt);
             }
         });
-        pnlPrincipal.add(btnRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 170, 60));
+        pnlPrincipal.add(btnRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 170, 40));
 
         jLabel17.setText("ROL:");
-        pnlPrincipal.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 30, 20));
+        pnlPrincipal.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 30, 20));
 
         comboRolAsiganar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        pnlPrincipal.add(comboRolAsiganar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 220, 30));
+        pnlPrincipal.add(comboRolAsiganar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 220, 30));
 
         jTablaPersonas.setModel(modelo);
+        jTablaPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablaPersonasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablaPersonas);
 
-        pnlPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 710, 140));
+        pnlPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 760, 100));
 
-        jLabel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Usuarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 51))); // NOI18N
-        pnlPrincipal.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 330));
+        jLabel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Usuarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 51, 51)));
+        pnlPrincipal.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 260));
 
-        add(pnlPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 730, 330));
+        add(pnlPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 780, 260));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -208,6 +219,16 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
                 && masculino.isSelected() == false) {
             JOptionPane.showMessageDialog(null, "Por Favor Complete los Campos");
         } else if (control.registrarPersona(cedula, tipoDoc, nombreUser, cel, direc, sexo, fecha1, correo)) {
+            numeroCedula.setText("");
+            tipoDocumento.setSelectedIndex(0);
+            nombre.setText("");
+            telefono.setText("");
+            direccion.setText("");
+            fechaNacimiento.setDateFormatString("");
+            email.setText("");
+            femenino.setSelected(false);
+            masculino.setSelected(false);
+
             JOptionPane.showMessageDialog(null, "Datos registrados con exito");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -217,8 +238,8 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAsignarUsuarioActionPerformed
 
     private void btnRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar1ActionPerformed
-        
-        String split [] = IniciarSesion.getElementos().get(comboRolAsiganar.getSelectedIndex()).split("/");
+
+        String split[] = roles.get(comboRolAsiganar.getSelectedIndex() - 1).toString().split("/");
         String cedula = txtCedula.getText();
         String clave = confirContrasena1.getText();
         String conClave = contrasena1.getText();
@@ -226,18 +247,29 @@ public class JPanelRegistrarUsuarios extends javax.swing.JPanel {
 
         if (!contrasena1.getText().equals(confirContrasena1.getText())) {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-        } else if (cedula.isEmpty() || clave.isEmpty() || conClave.isEmpty() || tipoDocumento.getSelectedIndex() == 0) {
+        } else if (cedula.isEmpty() || clave.isEmpty() || conClave.isEmpty() || comboRolAsiganar.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Por Favor Complete los Campos");
         } else if (control.registrarUsuario(cedula, clave, Rol)) {
+            comboRolAsiganar.setSelectedIndex(0);
+            txtCedula.setText("");
+            contrasena1.setText("");
+            confirContrasena1.setText("");
             JOptionPane.showMessageDialog(null, "Datos registrados con exito");
         }
+
     }//GEN-LAST:event_btnRegistrar1ActionPerformed
+
+    private void jTablaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaPersonasMouseClicked
+        personaCambiarRol = personas.get(jTablaPersonas.getSelectedRow()).toString().split("/");
+        txtCedula.setText(personaCambiarRol[0]);
+    }//GEN-LAST:event_jTablaPersonasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignarUsuario;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRegistrar1;
+    private javax.swing.ButtonGroup btnSexo;
     private javax.swing.JComboBox<String> comboRolAsiganar;
     private javax.swing.JPasswordField confirContrasena1;
     private javax.swing.JPasswordField contrasena1;
